@@ -218,6 +218,7 @@ while True:
 									allObjects.remove(object)
 
     for object in allObjects:
+		
 		i = int(0)
 		#draw a bounding box rectangle and label on the image
 
