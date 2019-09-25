@@ -254,7 +254,7 @@ while True:
 
     for object in allObjects:
 		i = int(0)
-			# draw a bounding box rectangle and label on the image
+		#draw a bounding box rectangle and label on the image
 
 		color = [int(c) for c in COLORS[classIDs[i]]]
 		cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
