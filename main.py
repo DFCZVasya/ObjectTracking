@@ -218,7 +218,7 @@ while True:
 									allObjects.remove(object)
 
     for object in allObjects:
-		i = int(0)
+		i = 0
 		#draw a bounding box rectangle and label on the image
 
 		color = [int(c) for c in COLORS[classIDs[i]]]
