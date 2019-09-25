@@ -184,7 +184,6 @@ while True:
 
 	#previous = memory.copy()
 	#memory = {}
-    count = 0
 
 	for track in tracks:
 		boxes.append([track[0], track[1], track[2], track[3]])
