@@ -238,20 +238,20 @@ while True:
 			#	p1 = (int(x2 + (w2-x2)/2), int(y2 + (h2-y2)/2))
 			#cv2.line(frame, p0, p1, color, 1)
 
-    """
-				if (intersect(p0, p1, line[0], line[1])) and (LABELS[classIDs[i]] == "car"):
-					counter += 1
-					print(LABELS[classIDs[i]])
 
-				elif (intersect(p0, p1, line[0], line[1])) and (LABELS[classIDs[i]] == "person"):
-					counterh +=1
-					print(LABELS[classIDs[i]])
-				elif (intersect(p0, p1, line[0], line[1])):
-					count +=1
-					print(LABELS[classIDs[i]])
-				elif previous_box !=0:
-					pass
-    """
+				#if (intersect(p0, p1, line[0], line[1])) and (LABELS[classIDs[i]] == "car"):
+				#	counter += 1
+				#	print(LABELS[classIDs[i]])
+
+				#elif (intersect(p0, p1, line[0], line[1])) and (LABELS[classIDs[i]] == "person"):
+				#	counterh +=1
+				#	print(LABELS[classIDs[i]])
+				#elif (intersect(p0, p1, line[0], line[1])):
+				#	count +=1
+				#	print(LABELS[classIDs[i]])
+				#elif previous_box !=0:
+				#	pass
+
     for object in allObjects:
 		i = int(0)
 			# draw a bounding box rectangle and label on the image
