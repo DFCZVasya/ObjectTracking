@@ -99,7 +99,7 @@ except:
 	print("[INFO] could not determine # of frames in video")
 	print("[INFO] no approx. completion time can be provided")
 	total = -1
-
+allObjects = []
 # loop over frames from the video file stream
 while True:
 	# read the next frame from the file
@@ -181,7 +181,7 @@ while True:
 	boxes = []
 	indexIDs = []
 	c = []
-	allObjects = []
+
 	#previous = memory.copy()
 	#memory = {}
     count = 0
@@ -192,33 +192,44 @@ while True:
 		#memory[indexIDs[-1]] = boxes[-1]
 
 	if len(boxes) > 0:
-		i = int(0)
+
 		for box in boxes:
 			# extract the bounding box coordinates
 			(x, y) = (int(box[0]), int(box[1]))
 			(w, h) = (int(box[2]), int(box[3]))
 			bbox = [x, y, x + w, y + h]
-			box = ObjectTracking(LABELS[classIDs[i]])
-
+			#box = ObjectTracking(LABELS[classIDs[i]])
 
 			if len(allObjects) < len(boxes):
+				box = ObjectTracking(LABELS[classIDs[i]])
 				box.createNewID(bbox, allObjects)
 				allObjects.append(box)
 				count += 1
 
-			idforDelete = box.tracking(bbox, allObjects)
-			if idforDelete != 0:
+			if len(allObjects) != 0:
 				for object in allObjects:
-					if object.id == idforDelete:
-						allObjects.remove(object)
+					intersection = object.getIntersection(bbox)
+
+					if intersection >= 0.15:
+						idforDelete = object.tracking(bbox, allObjects)
+
+						if idforDelete != 0:
+							for object in allObjects:
+								if object.id == idforDelete:
+									allObjects.remove(object)
 
 
-			# draw a bounding box rectangle and label on the image
-			color = [int(c) for c in COLORS[classIDs[i]]]
-			cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
 
-			color = [int(c) for c in COLORS[indexIDs[i] % len(COLORS)]]
-			cv2.rectangle(frame, (x, y), (w, h), color, 2)
+
+
+			#idforDelete = box.tracking(bbox, allObjects)
+			#if idforDelete != 0:
+			#	for object in allObjects:
+			#		if object.id == idforDelete:
+			#			allObjects.remove(object)
+
+
+
 
 			#if indexIDs[i] in previous:
 			#	previous_box = previous[indexIDs[i]]
@@ -242,7 +253,17 @@ while True:
 				elif previous_box !=0:
 					pass
 """
-			text = "ID {}, {}: {:.4f}  classID: {}  confidence: {}".format(indexIDs[i],LABELS[classIDs[i]], confidences[i], box.id, box.probability)
+        for object in allObjects:
+			i = int(0)
+			# draw a bounding box rectangle and label on the image
+
+			color = [int(c) for c in COLORS[classIDs[i]]]
+			cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
+
+			color = [int(c) for c in COLORS[indexIDs[i] % len(COLORS)]]
+			cv2.rectangle(frame, (x, y), (w, h), color, 2)
+
+			text = "ID {}, {}: {:.4f}  classID: {}  confidence: {}".format(indexIDs[i], object.classID, confidences[i], object.id, object.probability)
 			#text = "{}".format(indexIDs[i])
 			cv2.putText(frame, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
 			i += 1
