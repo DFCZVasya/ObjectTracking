@@ -217,21 +217,6 @@ while True:
 								if object.id == idforDelete:
 									allObjects.remove(object)
 
-    for object in allObjects:
-		
-		i = int(0)
-		#draw a bounding box rectangle and label on the image
-
-		color = [int(c) for c in COLORS[classIDs[i]]]
-		cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
-
-		color = [int(c) for c in COLORS[indexIDs[i] % len(COLORS)]]
-		cv2.rectangle(frame, (x, y), (w, h), color, 2)
-
-		text = "ID {}, {}: {:.4f}  classID: {}  confidence: {}".format(indexIDs[i], object.classID, confidences[i], object.id, object.probability)
-			#text = "{}".format(indexIDs[i])
-		cv2.putText(frame, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
-		i += 1
 
 
 
