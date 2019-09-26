@@ -41,7 +41,7 @@ class ObjectTracking(object) :
                 for pixel in newy:
                     if pixel in oldx:
                         yintersection.append(pixel)
-
+                k = 0
                 if len(xintersection) != 0 and len(yintersection) != 0:
                     sqold = (self.bbox[2] - self.bbox[0]) * (self.bbox[3] - self.bbox[1])
                     xintersectionMin = min(xintersection)
@@ -52,14 +52,15 @@ class ObjectTracking(object) :
 
                     k = sqintersection / sqold
 
-                    if k >= 0.01:
+                if k >= 0.01:
+                    if self.probability <= 1.0:
                         self.probability += 0.1
-                        self.bbox = newbbox
-                        return 0
-                    else:
-                        self.probability -= 0.1
-                        if self.probability == 0 or self.probability <= 0:
-                            deletObject()
+                    self.bbox = newbbox
+                    return 0
+                else:
+                    self.probability -= 0.1
+                    if self.probability == 0 or self.probability <= 0:
+                        deletObject()
 
 
     def deletObject(self):
@@ -91,3 +92,6 @@ class ObjectTracking(object) :
 
             k = sqintersection / sqold
             return k
+
+        else:
+            return 0

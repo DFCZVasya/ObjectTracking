@@ -46,11 +46,6 @@ ap.add_argument("-t", "--threshold", type=float, default=0.3,
 	help="threshold when applyong non-maxima suppression")
 args = vars(ap.parse_args())
 
-
-config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction= 0.5
-sess = tf.Session(config=config)
-K.set_session(sess)
 # Return true if line segments AB and CD intersect
 def intersect(A,B,C,D):
 	return ccw(A,C,D) != ccw(B,C,D) and ccw(A,B,C) != ccw(A,B,D)
@@ -209,7 +204,7 @@ while True:
 				for object in allObjects:
 					intersection = object.getIntersection(bbox)
 
-					if intersection >= 0.15:
+					if intersection > 0.15:
 						idforDelete = object.tracking(bbox, allObjects)
 
 						if idforDelete != 0:
@@ -217,19 +212,19 @@ while True:
 								if object.id == idforDelete:
 									allObjects.remove(object)
 	if len(allObjects) > 0:
-    	for object in allObjects:
+		for object in allObjects:
 			i = 0
 			#draw a bounding box rectangle and label on the image
 
-			color = [int(c) for c in COLORS[classIDs[i]]]
-			cv2.rectangle(frame, (x, y), (x + w, y + h), color, 2)
+			#color = [int(c) for c in COLORS[classIDs[i]]]
+			cv2.rectangle(frame, (object.bbox[0], object.bbox[1]), (object.bbox[2], object.bbox[3]), (255,0,0), 2)
 
-			color = [int(c) for c in COLORS[indexIDs[i] % len(COLORS)]]
-			cv2.rectangle(frame, (x, y), (w, h), color, 2)
+			#color = [int(c) for c in COLORS[indexIDs[i] % len(COLORS)]]
+			cv2.rectangle(frame, (object.bbox[0], object.bbox[1]), (object.bbox[2] - object.bbox[0], object.bbox[3] - object.bbox[1]), (255,0,0), 2)
 
-			text = "ID {}, {}: {:.4f}  classID: {}  confidence: {}".format(indexIDs[i], object.classID, confidences[i], object.id, object.probability)
+			text = "{}: classID: {}  confidence: {}".format(object.classID, object.id, object.probability)
 			#text = "{}".format(indexIDs[i])
-			cv2.putText(frame, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
+			cv2.putText(frame, text, (object.bbox[0], object.bbox[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 2)
 			i += 1
 
 
