@@ -52,7 +52,7 @@ class ObjectTracking(object) :
 
                     k = sqintersection / sqold
 
-                if k >= 0.01:
+                if k >= 0.15:
                     if self.probability <= 1.0:
                         self.probability += 0.1
                     self.bbox = newbbox

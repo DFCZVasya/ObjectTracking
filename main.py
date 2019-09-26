@@ -201,36 +201,38 @@ while True:
 				count += 1
 
 			if len(allObjects) != 0:
-				for object in allObjects:
-					intersection = object.getIntersection(bbox)
+				for object1 in allObjects:
+					intersection = object1.getIntersection(bbox)
 
 					if intersection > 0.15:
-						idforDelete = object.tracking(bbox, allObjects)
+						idforDelete = object1.tracking(bbox, allObjects)
 
 						if idforDelete != 0:
-							for object in allObjects:
-								if object.id == idforDelete:
-									allObjects.remove(object)
+							cc = 0
+							for object2 in allObjects:
+								if object2.id == idforDelete:
+									allObjects.pop(cc)
+								cc += 1
+
 	if len(allObjects) > 0:
-		for object in allObjects:
+		for object1 in allObjects:
 			i = 0
 			#draw a bounding box rectangle and label on the image
 
 			#color = [int(c) for c in COLORS[classIDs[i]]]
-			cv2.rectangle(frame, (object.bbox[0], object.bbox[1]), (object.bbox[2], object.bbox[3]), (255,0,0), 2)
+			#cv2.rectangle(frame, (object1.bbox[0], object1.bbox[1]), (object1.bbox[2], object1.bbox[3]), (255,0,0), 2)
 
 			#color = [int(c) for c in COLORS[indexIDs[i] % len(COLORS)]]
-			cv2.rectangle(frame, (object.bbox[0], object.bbox[1]), (object.bbox[2] - object.bbox[0], object.bbox[3] - object.bbox[1]), (255,0,0), 2)
+			cv2.rectangle(frame, (object1.bbox[0], object1.bbox[1]), (object1.bbox[2] - object1.bbox[0], object1.bbox[3] - object1.bbox[1]), (255,0,0), 2)
 
-			text = "{}: classID: {}  confidence: {}".format(object.classID, object.id, object.probability)
+			text = "{}: classID: {}  confidence: {:.4f}".format(object1.classID, object1.id, object1.probability)
 			#text = "{}".format(indexIDs[i])
-			cv2.putText(frame, text, (object.bbox[0], object.bbox[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 2)
+			cv2.putText(frame, text, (object1.bbox[0], object1.bbox[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 2)
 			i += 1
 
 
 
-  # draw line
-	cv2.line(frame, line[0], line[1], (255, 250, 250), 1)
+  # draw 
 
 
   #draw rectangle
