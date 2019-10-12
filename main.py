@@ -254,6 +254,14 @@ while True:
 							print('cc = ' + str(cc))
 							cc += 1
 
+			if len(bboxes) > 0:
+				i = 0
+				for bbox in bboxes:
+					box = ObjectTracking(LABELS[classIDs[i]])
+					box.createNewID(bbox, allObjects)
+					allObjects.append(box)
+					i += 1
+
 
 
 			#draw a bounding box rectangle and label on the image
