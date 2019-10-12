@@ -176,7 +176,7 @@ while True:
 	boxes = []
 	indexIDs = []
 	c = []
-
+	bboxes = []
 	#previous = memory.copy()
 	#memory = {}
 
@@ -185,54 +185,92 @@ while True:
 		indexIDs.append(int(track[4]))
 		#memory[indexIDs[-1]] = boxes[-1]
 
-	if len(boxes) > 0:
 
+	if len(boxes) > 0:
 		for box in boxes:
 			# extract the bounding box coordinates
 			(x, y) = (int(box[0]), int(box[1]))
 			(w, h) = (int(box[2]), int(box[3]))
-			bbox = [x, y, x + w, y + h]
+			bbox = [x, y, w, h]
+			bboxes.append(bbox)
 			#box = ObjectTracking(LABELS[classIDs[i]])
 
-			if len(allObjects) < len(boxes):
-				box = ObjectTracking(LABELS[classIDs[i]])
-				box.createNewID(bbox, allObjects)
-				allObjects.append(box)
-				count += 1
+			#if len(allObjects) < len(boxes):
+			#	box = ObjectTracking(LABELS[classIDs[i]])
+			#	box.createNewID(bbox, allObjects)
+			#	allObjects.append(box)
+			#	count += 1
 
-			if len(allObjects) != 0:
-				for object1 in allObjects:
-					intersection = object1.getIntersection(bbox)
+			#if len(allObjects) != 0:
+			#	for object1 in allObjects:
+			#		intersection = object1.getIntersection(bbox)
+			#
+			#		if intersection >= 0.5:
+			#			#print('')
+			#			idforDelete = object1.tracking(bbox)
+			#
+			#			if idforDelete != 0:
+			#				cc = 0
+			#				for object2 in allObjects:
+			#					if object2.id == idforDelete:
+			#						allObjects.pop(cc)
+			#						print('cc = ' + str(cc))
+			#					cc += 1
 
-					if intersection > 0.15:
-						idforDelete = object1.tracking(bbox, allObjects)
+	#print(allObjects)
 
-						if idforDelete != 0:
-							cc = 0
-							for object2 in allObjects:
-								if object2.id == idforDelete:
-									allObjects.pop(cc)
-								cc += 1
 
-	if len(allObjects) > 0:
+	if len(allObjects) = 0 and len(boxes) > 0:
+		i = 0
+		for bbox in bboxes:
+			box = ObjectTracking(LABELS[classIDs[i]])
+			box.createNewID(bbox, allObjects)
+			allObjects.append(box)
+			i += 1
+			#	box.createNewID(bbox, allObjects)
+	else:
 		for object1 in allObjects:
-			i = 0
+			print(object1.bbox)
+			print(object1.id)
+			print(object1.probability)
+			ex = False
+			for bbox in bboxes:
+				k = object1.getIntersection(bbox)
+				if k > 0.5:
+					object1.tracking(bbox, k)
+					bboxes.remove(bbox)
+					ex = False
+					break
+				else:
+					ex = True
+
+			if ex == True:
+				idforDelete = object1.tracking(bbox, k)
+				if idforDelete != 0:
+					cc = 0
+					for object2 in allObjects:
+						if object2.id == idforDelete:
+							allObjects.pop(cc)
+							print('cc = ' + str(cc))
+							cc += 1
+
+
+
 			#draw a bounding box rectangle and label on the image
 
 			#color = [int(c) for c in COLORS[classIDs[i]]]
-			#cv2.rectangle(frame, (object1.bbox[0], object1.bbox[1]), (object1.bbox[2], object1.bbox[3]), (255,0,0), 2)
+			cv2.rectangle(frame, (object1.bbox[0], object1.bbox[1]), (object1.bbox[2], object1.bbox[3]), (255,0,0), 2)
 
 			#color = [int(c) for c in COLORS[indexIDs[i] % len(COLORS)]]
-			cv2.rectangle(frame, (object1.bbox[0], object1.bbox[1]), (object1.bbox[2] - object1.bbox[0], object1.bbox[3] - object1.bbox[1]), (255,0,0), 2)
+			#cv2.rectangle(frame, (object1.bbox[0], object1.bbox[1]), (object1.bbox[2] - object1.bbox[0], object1.bbox[3] - object1.bbox[1]), (255,0,0), 2)
 
 			text = "{}: classID: {}  confidence: {:.4f}".format(object1.classID, object1.id, object1.probability)
 			#text = "{}".format(indexIDs[i])
 			cv2.putText(frame, text, (object1.bbox[0], object1.bbox[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 2)
-			i += 1
 
 
 
-  # draw 
+  # draw
 
 
   #draw rectangle
