@@ -237,15 +237,15 @@ while True:
 			for bbox in bboxes:
 				k = object1.getIntersection(bbox)
 				if k > 0.5:
-					object1.tracking(bbox, k)
-					bboxes.remove(bbox)
 					ex = False
+					object1.tracking(bbox, k, ex)
+					bboxes.remove(bbox)
 					break
 				else:
 					ex = True
 
 			if ex == True:
-				idforDelete = object1.tracking(bbox, k)
+				idforDelete = object1.tracking(bbox, k, ex)
 				if idforDelete != 0:
 					cc = 0
 					for object2 in allObjects:
