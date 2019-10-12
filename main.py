@@ -245,7 +245,7 @@ while True:
 					ex = True
 
 			if ex == True:
-				idforDelete = object1.tracking(bbox, k, ex)
+				idforDelete = object1.tracking(0, k, ex)
 				if idforDelete != 0:
 					cc = 0
 					for object2 in allObjects:
@@ -253,16 +253,6 @@ while True:
 							allObjects.pop(cc)
 							print('cc = ' + str(cc))
 							cc += 1
-
-			if len(bboxes) > 0:
-				i = 0
-				for bbox in bboxes:
-					box = ObjectTracking(LABELS[classIDs[i]])
-					box.createNewID(bbox, allObjects)
-					allObjects.append(box)
-					i += 1
-
-
 
 			#draw a bounding box rectangle and label on the image
 
@@ -275,6 +265,18 @@ while True:
 			text = "{}: classID: {}  confidence: {:.4f}".format(object1.classID, object1.id, object1.probability)
 			#text = "{}".format(indexIDs[i])
 			cv2.putText(frame, text, (object1.bbox[0], object1.bbox[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 2)
+
+	if len(bboxes) > 0:
+		i = 0
+		for bbox in bboxes:
+			box = ObjectTracking(LABELS[classIDs[i]])
+			box.createNewID(bbox, allObjects)
+			allObjects.append(box)
+			i += 1
+
+
+
+
 
 
 
