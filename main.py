@@ -302,7 +302,7 @@ while True:
 		#cv2.rectangle(frame, (10,100), (1200,450), (153, 255, 0), 100)
 		cv2.putText(frame, 'found person: ', (1750,150), font, 4, (243, 132, 68), 6, cv2.LINE_AA)
 	# if counter >= 5:
-		cv2.putText(frame, str(count), (2615,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 10)
+		cv2.putText(frame, str(len(allObjects)), (2615,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 10)
 
 		cv2.putText(frame, 'found other: ', (2750,150), font, 4, (243, 132, 68), 6, cv2.LINE_AA)
 	# if counter >= 5:
