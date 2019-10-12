@@ -220,7 +220,7 @@ while True:
 	#print(allObjects)
 
 
-	if len(allObjects) = 0 and len(boxes) > 0:
+	if len(allObjects) == 0 and len(boxes) > 0:
 		i = 0
 		for bbox in bboxes:
 			box = ObjectTracking(LABELS[classIDs[i]])
