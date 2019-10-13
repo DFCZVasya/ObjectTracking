@@ -193,6 +193,7 @@ while True:
 			(w, h) = (int(box[2]), int(box[3]))
 			bbox = [x, y, w, h]
 			bboxes.append(bbox)
+			cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0,255,0), 2)
 			#box = ObjectTracking(LABELS[classIDs[i]])
 
 			#if len(allObjects) < len(boxes):
