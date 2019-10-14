@@ -286,28 +286,28 @@ while True:
 
   #draw rectangle
 	if resolution == '4k':
-		cv2.rectangle(frame, (0,100), (3840,100), (153, 255, 0), 220)
+		#cv2.rectangle(frame, (0,100), (3840,100), (153, 255, 0), 220)
 	# draw counter
 		font = cv2.FONT_HERSHEY_SIMPLEX
-		cv2.putText(frame, 'found car: ', (20,150), font, 4, (243, 132, 68), 6, cv2.LINE_AA)
+		#cv2.putText(frame, 'found car: ', (20,150), font, 4, (243, 132, 68), 6, cv2.LINE_AA)
 	# if counter >= 5:
-		cv2.putText(frame, str(count), (670,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 8)
+		#cv2.putText(frame, str(count), (670,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 8)
 
 
 		#cv2.rectangle(frame, (10,100), (1200,350), (153, 255, 0), 100)
-		cv2.putText(frame, 'found bench: ', (800,150), font, 4, (243, 132, 68), 6, cv2.LINE_AA)
+		cv2.putText(frame, str(len(allObjects)), (50,50), font, 2, (243, 132, 68), 4, cv2.LINE_AA)
 	# if counter >= 5:
-		cv2.putText(frame, str(count), (1620,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 10)
+		#cv2.putText(frame, str(count), (1620,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 10)
 
 
 		#cv2.rectangle(frame, (10,100), (1200,450), (153, 255, 0), 100)
-		cv2.putText(frame, 'found person: ', (1750,150), font, 4, (243, 132, 68), 6, cv2.LINE_AA)
+		#cv2.putText(frame, 'found person: ', (1750,150), font, 4, (243, 132, 68), 6, cv2.LINE_AA)
 	# if counter >= 5:
-		cv2.putText(frame, str(len(allObjects)), (2615,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 10)
+		#cv2.putText(frame, str(len(allObjects)), (2615,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 10)
 
-		cv2.putText(frame, 'found other: ', (2750,150), font, 4, (243, 132, 68), 6, cv2.LINE_AA)
+		#cv2.putText(frame, 'found other: ', (2750,150), font, 4, (243, 132, 68), 6, cv2.LINE_AA)
 	# if counter >= 5:
-		cv2.putText(frame, str(count), (3515,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 10)
+		#cv2.putText(frame, str(count), (3515,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 10)
 	elif resolution == 'hd':
 		cv2.rectangle(frame, (10,20), (500,20),(153,255,0),100)
 
