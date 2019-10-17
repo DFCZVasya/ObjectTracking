@@ -231,9 +231,9 @@ while True:
 			#	box.createNewID(bbox, allObjects)
 	else:
 		for object1 in allObjects:
-			print(object1.bbox)
-			print(object1.id)
-			print(object1.probability)
+			#print(object1.bbox)
+			#print(object1.id)
+			#print(object1.probability)
 			ex = False
 			for bbox in bboxes:
 				k = object1.getIntersection(bbox)
@@ -252,7 +252,7 @@ while True:
 					for object2 in allObjects:
 						if object2.id == idforDelete:
 							allObjects.pop(cc)
-							print('cc = ' + str(cc))
+							#print('cc = ' + str(cc))
 							cc += 1
 
 			#draw a bounding box rectangle and label on the image
