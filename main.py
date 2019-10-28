@@ -97,7 +97,7 @@ except:
 allObjects = []
 # loop over frames from the video file stream
 while True:
-
+	start_time = time.time() ###############################################################
 	# read the next frame from the file
 	(grabbed, frame) = vs.read()
 
@@ -188,7 +188,7 @@ while True:
 		#memory[indexIDs[-1]] = boxes[-1]
 
 
-	start_time = time.time() ###############################################################
+
 	if len(boxes) > 0:
 		i = int(0)
 		for box in boxes:
