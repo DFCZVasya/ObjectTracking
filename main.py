@@ -120,7 +120,7 @@ while True:
 	#start = time.time()
 	layerOutputs = net.forward(ln)
 	#end = time.time()
-
+	print("--- %s seconds ---" % (time.time() - start_time))#################################################
 	# initialize our lists of detected bounding boxes, confidences,
 	# and class IDs, respectively
 	boxes = []
@@ -255,7 +255,7 @@ while True:
 			bbox = bbox[:-1]
 			box.createNewID(bbox, allObjects)
 			allObjects.append(box)
-	print("--- %s seconds ---" % (time.time() - start_time))#################################################
+
 
 """
   #draw rectangle
