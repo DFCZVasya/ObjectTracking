@@ -97,10 +97,10 @@ except:
 allObjects = []
 # loop over frames from the video file stream
 while True:
-	start_time = time.time()
+
 	# read the next frame from the file
 	(grabbed, frame) = vs.read()
-	print("--- %s seconds ---" % (time.time() - start_time))
+
 
 	# if the frame was not grabbed, then we have reached the end
 	# of the stream
@@ -117,16 +117,16 @@ while True:
 	blob = cv2.dnn.blobFromImage(frame, 1 / 255.0, (416, 416),
 		swapRB=True, crop=False)
 	net.setInput(blob)
-	start = time.time()
+	#start = time.time()
 	layerOutputs = net.forward(ln)
-	end = time.time()
+	#end = time.time()
 
 	# initialize our lists of detected bounding boxes, confidences,
 	# and class IDs, respectively
 	boxes = []
 	confidences = []
 	classIDs = []
-
+	start_time = time.time() ###############################################################
 	# loop over each of the layer outputs
 	for output in layerOutputs:
 		# loop over each of the detections
@@ -187,7 +187,7 @@ while True:
 		indexIDs.append(int(track[4]))
 		#memory[indexIDs[-1]] = boxes[-1]
 
-
+	print("--- %s seconds ---" % (time.time() - start_time))
 	if len(boxes) > 0:
 		i = int(0)
 		for box in boxes:
