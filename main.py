@@ -97,6 +97,7 @@ except:
 allObjects = []
 # loop over frames from the video file stream
 while True:
+	start_time = time.time()
 	# read the next frame from the file
 	(grabbed, frame) = vs.read()
 
@@ -283,7 +284,7 @@ while True:
 
 
 
-
+    print("--- %s seconds ---" % (time.time() - start_time))
 
   # draw
 
