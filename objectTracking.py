@@ -67,5 +67,5 @@ class ObjectTracking(object) :
             return k
 
         else:
-            print('0')
+            #print('0')
             return 0
