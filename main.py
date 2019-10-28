@@ -100,6 +100,7 @@ while True:
 	start_time = time.time()
 	# read the next frame from the file
 	(grabbed, frame) = vs.read()
+	print("--- %s seconds ---" % (time.time() - start_time))
 
 	# if the frame was not grabbed, then we have reached the end
 	# of the stream
@@ -279,7 +280,6 @@ while True:
 			bbox = bbox[:-1]
 			box.createNewID(bbox, allObjects)
 			allObjects.append(box)
-	print("--- %s seconds ---" % (time.time() - start_time))
 
   # draw
 
