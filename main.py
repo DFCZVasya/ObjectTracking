@@ -97,7 +97,7 @@ except:
 allObjects = []
 # loop over frames from the video file stream
 while True:
-
+	start_time = time.time()
 	# read the next frame from the file
 	(grabbed, frame) = vs.read()
 
@@ -118,9 +118,9 @@ while True:
 		swapRB=True, crop=False)
 	net.setInput(blob)
 	#start = time.time()
-	start_time = time.time() ###############################################################
+	###################################################################
 	layerOutputs = net.forward(ln)
-	print("--- %s seconds ---" % (time.time() - start_time))
+	####################################################################
 	#end = time.time()
 	###############################################################################################
 	#################################################
@@ -258,6 +258,7 @@ while True:
 			bbox = bbox[:-1]
 			box.createNewID(bbox, allObjects)
 			allObjects.append(box)
+	print("--- %s seconds ---" % (time.time() - start_time))
 
 
 """
