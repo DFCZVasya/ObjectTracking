@@ -97,11 +97,11 @@ except:
 allObjects = []
 # loop over frames from the video file stream
 while True:
-	start_time = time.time() ###############################################################
+
 	# read the next frame from the file
 	(grabbed, frame) = vs.read()
 
-
+	###########################################################################################
 	# if the frame was not grabbed, then we have reached the end
 	# of the stream
 	if not grabbed:
@@ -118,9 +118,12 @@ while True:
 		swapRB=True, crop=False)
 	net.setInput(blob)
 	#start = time.time()
+	start_time = time.time() ###############################################################
 	layerOutputs = net.forward(ln)
+	print("--- %s seconds ---" % (time.time() - start_time))
 	#end = time.time()
-	print("--- %s seconds ---" % (time.time() - start_time))#################################################
+	###############################################################################################
+	#################################################
 	# initialize our lists of detected bounding boxes, confidences,
 	# and class IDs, respectively
 	boxes = []
