@@ -187,12 +187,14 @@ while True:
 
 
 	if len(boxes) > 0:
+		i = int(0)
 		for box in boxes:
 			# extract the bounding box coordinates
 			(x, y) = (int(box[0]), int(box[1]))
 			(w, h) = (int(box[2]), int(box[3]))
-			bbox = [x, y, w, h]
+			bbox = [x, y, w, h, LABELS[classIDs[i]]]
 			bboxes.append(bbox)
+			i += 1
 			cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (0,255,0), 2)
 			#box = ObjectTracking(LABELS[classIDs[i]])
 
@@ -224,7 +226,8 @@ while True:
 	if len(allObjects) == 0 and len(boxes) > 0:
 		i = 0
 		for bbox in bboxes:
-			box = ObjectTracking(LABELS[classIDs[i]])
+			box = ObjectTracking(bbox[4])
+			bbox = bbox[:-1]
 			box.createNewID(bbox, allObjects)
 			allObjects.append(box)
 			i += 1
@@ -236,11 +239,13 @@ while True:
 			#print(object1.probability)
 			ex = False
 			for bbox in bboxes:
+				b = bbox
+				bbox = bbox[:-1]
 				k = object1.getIntersection(bbox)
 				if k > 0.5:
 					ex = False
 					object1.tracking(bbox, k, ex)
-					bboxes.remove(bbox)
+					bboxes.remove(b)
 					break
 				else:
 					ex = True
@@ -268,12 +273,11 @@ while True:
 			cv2.putText(frame, text, (object1.bbox[0], object1.bbox[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 2)
 
 	if len(bboxes) > 0:
-		i = 0
 		for bbox in bboxes:
-			box = ObjectTracking(LABELS[classIDs[i]])
+			box = ObjectTracking(bbox[4])
+			bbox = bbox[:-1]
 			box.createNewID(bbox, allObjects)
 			allObjects.append(box)
-			i += 1
 
 
 
