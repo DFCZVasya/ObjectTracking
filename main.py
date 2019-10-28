@@ -255,9 +255,7 @@ while True:
 			bbox = bbox[:-1]
 			box.createNewID(bbox, allObjects)
 			allObjects.append(box)
-
-  # draw
-  print("--- %s seconds ---" % (time.time() - start_time))#################################################
+	print("--- %s seconds ---" % (time.time() - start_time))#################################################
 
 """
   #draw rectangle
