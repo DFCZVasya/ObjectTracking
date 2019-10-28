@@ -63,7 +63,7 @@ class ObjectTracking(object) :
             sqintersection = (xintersectionMax - xintersectionMin) * (yintersectionMax - yintersectionMin)
 
             k = sqintersection / sqold
-            print(k)
+            #print(k)
             return k
 
         else:
