@@ -287,7 +287,7 @@ while True:
 
   # draw
 
-    """
+"""
   #draw rectangle
 	if resolution == '4k':
 		#cv2.rectangle(frame, (0,100), (3840,100), (153, 255, 0), 220)
@@ -354,7 +354,7 @@ while True:
 	#	writer.release()
 	#	vs.release()
 	#	exit()
-	"""
+"""
 # release the file pointers
 print("[INFO] cleaning up...")
 #writer.release()
