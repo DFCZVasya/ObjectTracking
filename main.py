@@ -241,9 +241,12 @@ while True:
 							cc += 1
 
 			#draw a bounding box rectangle and label on the image
+			bbox = object1.getbbox()
+			if object1.getcounter() = 50:
+				counter += 1
 
 			#color = [int(c) for c in COLORS[classIDs[i]]]
-			#cv2.rectangle(frame, (object1.bbox[0], object1.bbox[1]), (object1.bbox[2], object1.bbox[3]), (255,0,0), 2)
+			cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), (255,0,0), 2)
 
 			#color = [int(c) for c in COLORS[indexIDs[i] % len(COLORS)]]
 			#cv2.rectangle(frame, (object1.bbox[0], object1.bbox[1]), (object1.bbox[2] - object1.bbox[0], object1.bbox[3] - object1.bbox[1]), (255,0,0), 2)
@@ -261,7 +264,7 @@ while True:
 	print("--- %s seconds ---" % (time.time() - start_time))
 
 
-"""
+
   #draw rectangle
 	if resolution == '4k':
 		#cv2.rectangle(frame, (0,100), (3840,100), (153, 255, 0), 220)
@@ -270,10 +273,10 @@ while True:
 		#cv2.putText(frame, 'found car: ', (20,150), font, 4, (243, 132, 68), 6, cv2.LINE_AA)
 	# if counter >= 5:
 		#cv2.putText(frame, str(count), (670,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 8)
-
+		text = str(len(allObjects)) + ' ' + str(counter)
 
 		#cv2.rectangle(frame, (10,100), (1200,350), (153, 255, 0), 100)
-		cv2.putText(frame, str(len(allObjects)), (50,50), font, 2, (243, 132, 68), 4, cv2.LINE_AA)
+		cv2.putText(frame, text, (50,50), font, 2, (0, 0, 255), 4, cv2.LINE_AA)
 	# if counter >= 5:
 		#cv2.putText(frame, str(count), (1620,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 10)
 
@@ -328,7 +331,7 @@ while True:
 	#	writer.release()
 	#	vs.release()
 	#	exit()
-"""
+
 # release the file pointers
 print("[INFO] cleaning up...")
 #writer.release()
