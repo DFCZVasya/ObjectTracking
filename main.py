@@ -242,7 +242,7 @@ while True:
 
 			#draw a bounding box rectangle and label on the image
 			bbox = object1.getbbox()
-			if object1.getcounter() = 50:
+			if object1.getcounter() == 50:
 				counter += 1
 
 			#color = [int(c) for c in COLORS[classIDs[i]]]
