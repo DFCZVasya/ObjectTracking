@@ -39,7 +39,7 @@ class ObjectTracking(object) :
             if self.probability <= 0:
                 return self.id
 
-    def count(self):
+    def getcount(self):
         return self.counter
 
     def getbbox(self):
