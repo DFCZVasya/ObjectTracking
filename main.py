@@ -276,7 +276,7 @@ while True:
 		text = str(len(allObjects)) + ' ' + str(counter)
 
 		#cv2.rectangle(frame, (10,100), (1200,350), (153, 255, 0), 100)
-		cv2.putText(frame, text, (50,50), font, 2, (0, 0, 255), 4, cv2.LINE_AA)
+		cv2.putText(frame, text, (100,200), font, 2, (0, 0, 255), 4, cv2.LINE_AA)
 	# if counter >= 5:
 		#cv2.putText(frame, str(count), (1620,165), cv2.FONT_HERSHEY_DUPLEX, 5.0, (128, 191, 255), 10)
 
